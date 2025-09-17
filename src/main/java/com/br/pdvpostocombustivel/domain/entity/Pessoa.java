@@ -1,17 +1,32 @@
 package com.br.pdvpostocombustivel.domain.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
+@Entity
+@Table(name = "pessoa")
 
 public class Pessoa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    /** atributos */
+    @Column(length = 200, nullable = false)
     private String nomeCompleto;
+
+    @Column(length = 14, nullable = false)
     private String cpfCnpj;
-    private Date dataNascimento;
+
+    @Column(length = 12)
     private Long numeroCtps;
+
+    @Column(length = 10, nullable = false)
+    private Date dataNascimento;
+    /** atributos */
     // construtor
 
-    public Pessoa(String nomeCompleto, String cpfCnpj, Date dataNascimento) {
+    public Pessoa() {
+
         super();
         this.nomeCompleto = nomeCompleto;
         this.cpfCnpj = cpfCnpj;
@@ -32,7 +47,7 @@ public class Pessoa {
         return dataNascimento;
     }
 
-    public Integer getNumeroCtps() {
+    public Long getNumeroCtps() {
         return numeroCtps;
     }
 
@@ -52,8 +67,12 @@ public class Pessoa {
     public void setNumeroCtps(Long numeroCtps) {
         this.numeroCtps = numeroCtps;
         }
-    public Pessoa() {
 
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id = id;
     }
     }
 
