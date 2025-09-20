@@ -11,6 +11,7 @@ public class Contato {
         this.email = email;
         this.endereco = endereco;
     }
+
     /*getters*/
     public String getTelefone() {
         return telefone;
@@ -20,6 +21,10 @@ public class Contato {
     }
     public String getEndereco() {
         return endereco;
+    }
+    public Contato() {
+
+        super();
     }
     /*setters*/
     public void setTelefone (String telefone){

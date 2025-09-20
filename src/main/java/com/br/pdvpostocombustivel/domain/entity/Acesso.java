@@ -9,6 +9,10 @@ public class Acesso {
         this.usuario = usuario;
         this.senha = senha;
     }
+    public Acesso() {
+
+        super();
+    }
 
     /*getters*/
     public String getUsuario() {

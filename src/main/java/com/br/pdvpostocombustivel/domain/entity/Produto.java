@@ -34,6 +34,10 @@ public class Produto {
     public String getCategoria() {
         return categoria;
     }
+    public Produto() {
+
+        super();
+    }
 
     public String getMarca() {
         return marca;

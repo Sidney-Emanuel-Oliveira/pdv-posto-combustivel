@@ -1,8 +1,9 @@
 package com.br.pdvpostocombustivel.domain.entity;
 
+import com.br.pdvpostocombustivel.enums.TipoPessoa;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 @Entity
 @Table(name = "pessoa")
 
@@ -21,16 +22,29 @@ public class Pessoa {
     private Long numeroCtps;
 
     @Column(length = 10, nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_pessoa", nullable = false, length = 15)
+    private TipoPessoa tipoPessoa;
+
+
     /** atributos */
     // construtor
-
+    public Pessoa(String nomeCompleto,
+                  String cpfCnpj,
+                  Long numeroCtps,
+                  LocalDate dataNascimento,
+                  TipoPessoa tipoPessoa) {
+        this.numeroCtps = numeroCtps;
+        this.dataNascimento = dataNascimento;
+        this.nomeCompleto = nomeCompleto;
+        this.cpfCnpj = cpfCnpj;
+        this.tipoPessoa = tipoPessoa;
+    }
     public Pessoa() {
 
         super();
-        this.nomeCompleto = nomeCompleto;
-        this.cpfCnpj = cpfCnpj;
-        this.dataNascimento = dataNascimento;
     }
 
 
@@ -43,12 +57,15 @@ public class Pessoa {
         return cpfCnpj;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
     public Long getNumeroCtps() {
         return numeroCtps;
+    }
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
     }
 
     // setters
@@ -60,14 +77,16 @@ public class Pessoa {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
     public void setNumeroCtps(Long numeroCtps) {
         this.numeroCtps = numeroCtps;
         }
-
+    public void setTipoPessoa(TipoPessoa tipoPessoa){
+        this.tipoPessoa = tipoPessoa;
+    }
     public Long getId(){
         return id;
     }

@@ -18,6 +18,10 @@ public class Estoque {
         this.loteFabricacao = loteFabricacao;
         this.dataValidade = dataValidade;
     }
+    public Estoque() {
+
+        super();
+    }
 
     // getters
     public BigDecimal getQuantidade() {

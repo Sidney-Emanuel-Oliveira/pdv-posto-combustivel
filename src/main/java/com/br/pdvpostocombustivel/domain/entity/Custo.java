@@ -21,6 +21,10 @@ public class Custo {
         this.margemLucro = margemLucro;
         this.dataProcessamento = dataProcessamento;
     }
+    public Custo() {
+
+        super();
+    }
 
     // getters
     public double getImposto() {

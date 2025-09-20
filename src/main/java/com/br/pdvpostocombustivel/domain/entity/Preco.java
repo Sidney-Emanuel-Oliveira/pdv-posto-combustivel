@@ -30,6 +30,10 @@ public class Preco {
     public Date getHoraAlteracao() {
         return horaAlteracao;
     }
+    public Preco() {
+
+        super();
+    }
 
     // setters
     public void setValor(BigDecimal valor) {
