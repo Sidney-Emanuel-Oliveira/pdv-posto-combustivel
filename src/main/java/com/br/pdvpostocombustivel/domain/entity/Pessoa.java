@@ -46,7 +46,7 @@ public class Pessoa {
     private TipoPessoa tipoPessoa;
 
     /** Construtor JPA */
-    public Pessoa() {}
+    protected Pessoa() {}
 
     public Pessoa(String nomeCompleto,
                   String cpfCnpj,
