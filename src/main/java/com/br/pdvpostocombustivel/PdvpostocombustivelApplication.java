@@ -7,15 +7,17 @@ import com.br.pdvpostocombustivel.domain.entity.Estoque;
 import com.br.pdvpostocombustivel.domain.entity.Pessoa;
 import com.br.pdvpostocombustivel.domain.entity.Preco;
 import com.br.pdvpostocombustivel.domain.entity.Produto;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 @SpringBootApplication
 public class PdvpostocombustivelApplication {
 
     public static void main(String[] args) {
-        // SpringApplication.run(PdvpostocombustivelApplication.class, args);
+        SpringApplication.run(PdvpostocombustivelApplication.class, args);
 
         // ==================== PESSOA ====================
         Pessoa pessoa1 = new Pessoa();
