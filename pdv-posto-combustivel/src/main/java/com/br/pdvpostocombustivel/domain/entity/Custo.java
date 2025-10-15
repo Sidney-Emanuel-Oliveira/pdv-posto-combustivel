@@ -1,5 +1,6 @@
 package com.br.pdvpostocombustivel.domain.entity;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -39,6 +40,18 @@ public class Custo {
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "data_processamento")
+=======
+import java.util.Date;
+
+public class Custo {
+
+    // atributos
+    private double imposto;
+    private double frete;
+    private double custoVariavel;
+    private double custoFixo;
+    private double margemLucro;
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     private Date dataProcessamento;
 
     // construtor com parâmetros
@@ -56,10 +69,13 @@ public class Custo {
     }
 
     // getters
+<<<<<<< HEAD
     public Long getId() {
         return id;
     }
 
+=======
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public double getImposto() {
         return imposto;
     }
@@ -85,10 +101,13 @@ public class Custo {
     }
 
     // setters
+<<<<<<< HEAD
     public void setId(Long id) {
         this.id = id;
     }
 
+=======
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public void setImposto(double imposto) {
         this.imposto = imposto;
     }
