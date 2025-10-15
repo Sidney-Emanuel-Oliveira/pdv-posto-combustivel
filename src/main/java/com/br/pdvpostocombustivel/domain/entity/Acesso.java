@@ -1,4 +1,5 @@
 package com.br.pdvpostocombustivel.domain.entity;
+<<<<<<< HEAD
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -15,6 +16,11 @@ public class Acesso {
     private String usuario;
 
     @NotBlank
+=======
+public class Acesso {
+    /*atributos*/
+    private String usuario;
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     private String senha;
 
     /*constructor*/
@@ -28,10 +34,13 @@ public class Acesso {
     }
 
     /*getters*/
+<<<<<<< HEAD
     public Long getId() {
         return id;
     }
 
+=======
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public String getUsuario() {
         return usuario;
     }
@@ -41,10 +50,13 @@ public class Acesso {
     }
 
     /*setters*/
+<<<<<<< HEAD
     public void setId(Long id) {
         this.id = id;
     }
 
+=======
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }

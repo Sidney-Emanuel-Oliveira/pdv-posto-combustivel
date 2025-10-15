@@ -1,4 +1,5 @@
 package com.br.pdvpostocombustivel.domain.entity;
+<<<<<<< HEAD
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -19,6 +20,12 @@ public class Contato {
     private String email;
 
     @NotBlank
+=======
+public class Contato {
+    /*atributos */
+    private String telefone;
+    private String email;
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     private String endereco;
 
     /*constructor*/
@@ -28,6 +35,7 @@ public class Contato {
         this.endereco = endereco;
     }
 
+<<<<<<< HEAD
     public Contato() {
 
         super();
@@ -37,6 +45,9 @@ public class Contato {
         return id;
     }
 
+=======
+    /*getters*/
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public String getTelefone() {
         return telefone;
     }
@@ -46,12 +57,20 @@ public class Contato {
     public String getEndereco() {
         return endereco;
     }
+<<<<<<< HEAD
 
     /*setters*/
     public void setId(Long id) {
         this.id = id;
     }
 
+=======
+    public Contato() {
+
+        super();
+    }
+    /*setters*/
+>>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     public void setTelefone (String telefone){
         this.telefone = telefone;
     }
