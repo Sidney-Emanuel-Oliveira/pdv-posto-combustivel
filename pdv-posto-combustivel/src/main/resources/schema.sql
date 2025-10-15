@@ -1,6 +1,5 @@
 -- Criação da tabela pessoas
 CREATE TABLE IF NOT EXISTS pessoas (
-<<<<<<< HEAD
     id BIGSERIAL PRIMARY KEY,
     nome_completo VARCHAR(200) NOT NULL,
     cpf_cnpj VARCHAR(20) NOT NULL UNIQUE,
@@ -97,11 +96,3 @@ CREATE TABLE IF NOT EXISTS custos (
     tipo_custo VARCHAR(50) NOT NULL,
     observacao TEXT
 );
-=======
-                                       id BIGSERIAL PRIMARY KEY,
-                                       nome_completo VARCHAR(200) NOT NULL,
-    cpf_cnpj VARCHAR(20) NOT NULL UNIQUE,
-    numero_ctps BIGINT,
-    data_nascimento DATE
-    );
->>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93

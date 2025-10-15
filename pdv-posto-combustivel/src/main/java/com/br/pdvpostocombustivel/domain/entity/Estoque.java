@@ -2,7 +2,6 @@ package com.br.pdvpostocombustivel.domain.entity;
 import java.util.Date;
 import java.math.BigDecimal;
 
-<<<<<<< HEAD
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,14 +33,6 @@ public class Estoque {
     @NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "data_validade")
-=======
-public class Estoque {
-    // atributos
-    private BigDecimal quantidade;
-    private String localTanque;
-    private String localEndereco;
-    private String loteFabricacao;
->>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     private Date dataValidade;
 
     // construtor
@@ -78,13 +69,10 @@ public class Estoque {
         return dataValidade;
     }
 
-<<<<<<< HEAD
     public Long getId() {
         return id;
     }
 
-=======
->>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
     // setters
     public void setQuantidade(BigDecimal quantidade) {
         this.quantidade = quantidade;
@@ -105,11 +93,8 @@ public class Estoque {
     public void setDataValidade(Date dataValidade) {
         this.dataValidade = dataValidade;
     }
-<<<<<<< HEAD
 
     public void setId(Long id) {
         this.id = id;
     }
-=======
->>>>>>> 6d2f50b40b505747430fffd2cc8bd0c5b5f2de93
 }
