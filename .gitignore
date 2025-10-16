@@ -89,9 +89,9 @@ Desktop.ini
 spring-boot-devtools.properties
 
 # Application properties with sensitive data (keep template only)
-# application-local.properties
+**/application.properties
+!**/application.properties.example
 
 # Logs directory
 logs/
 *.log.*
-

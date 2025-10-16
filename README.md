@@ -1,108 +1,257 @@
-# PDV Posto de Combustível
+# 🏪 PDV Posto de Combustível
 
-Sistema de Ponto de Venda (PDV) para Posto de Combustível desenvolvido em Java com Spring Boot e Swing.
+Sistema de Ponto de Venda (PDV) para Posto de Combustível desenvolvido em Java com Spring Boot (Backend) e Swing (Frontend).
+
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.5-brightgreen)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18.0-blue)
+![Maven](https://img.shields.io/badge/Maven-3.8+-red)
+
+## 📋 Índice
+
+- [Características](#características)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
+- [Como Executar](#como-executar)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [API Endpoints](#api-endpoints)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+
+## ✨ Características
+
+- ✅ **Backend REST API** completo com Spring Boot
+- ✅ **Frontend Desktop** com Java Swing
+- ✅ **Banco de Dados PostgreSQL** 18.0
+- ✅ **Documentação API** com Swagger UI
+- ✅ **CRUD Completo** para todas as entidades
+- ✅ **Validação** de CPF/CNPJ
+- ✅ **Maven** para gerenciamento de dependências
+
+## 📦 Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado:
+
+### ✅ Obrigatório:
+- **Java 17** ou superior ([Download JDK 17](https://www.oracle.com/java/technologies/downloads/#java17))
+- **Maven 3.8+** ([Download Maven](https://maven.apache.org/download.cgi))
+- **PostgreSQL 16+** ([Download PostgreSQL](https://www.postgresql.org/download/))
+- **Git** ([Download Git](https://git-scm.com/downloads))
+
+### ✅ Recomendado:
+- **IntelliJ IDEA** (Community ou Ultimate) ([Download](https://www.jetbrains.com/idea/download/))
+- **pgAdmin 4** para gerenciar o PostgreSQL
+
+## 🚀 Instalação
+
+### 1. Clone o Repositório
+
+```bash
+git clone https://github.com/Sidney-Emanuel-Oliveira/pdv-posto-combustivel.git
+cd pdv-posto-combustivel
+```
+
+### 2. Verifique as Versões Instaladas
+
+```bash
+java -version    # Deve mostrar Java 17+
+mvn -version     # Deve mostrar Maven 3.8+
+psql --version   # Deve mostrar PostgreSQL 16+
+```
+
+## 🗄️ Configuração do Banco de Dados
+
+### Passo 1: Criar o Banco de Dados
+
+Abra o **pgAdmin** ou o **psql** e execute:
+
+```sql
+-- Criar o banco de dados
+CREATE DATABASE pdvpostocombustivel;
+```
+
+### Passo 2: Executar os Scripts de Inicialização
+
+Execute os scripts SQL na ordem:
+
+```bash
+# No terminal do PostgreSQL (psql):
+\c pdvpostocombustivel
+\i _docs_e_scripts/PASSO1_CRIAR_BANCO.sql
+\i _docs_e_scripts/PASSO2_CRIAR_TABELAS_E_DADOS.sql
+```
+
+**Ou usando pgAdmin:**
+- Conecte-se ao banco `pdvpostocombustivel`
+- Abra os arquivos SQL em `_docs_e_scripts/`
+- Execute na ordem: `PASSO1_CRIAR_BANCO.sql` → `PASSO2_CRIAR_TABELAS_E_DADOS.sql`
+
+### Passo 3: Configurar Credenciais do Banco
+
+1. Navegue até: `pdv-posto-combustivel/src/main/resources/`
+2. Copie o arquivo `application.properties.example` para `application.properties`
+3. Edite `application.properties` e configure sua senha:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/pdvpostocombustivel
+spring.datasource.username=postgres
+spring.datasource.password=SUA_SENHA_AQUI  # ← Coloque sua senha do PostgreSQL
+```
+
+**⚠️ IMPORTANTE:** Nunca faça commit do arquivo `application.properties` com sua senha real!
+
+## 💻 Como Executar
+
+### Opção 1: Usando IntelliJ IDEA (Recomendado)
+
+1. **Abra o projeto** no IntelliJ IDEA
+   - `File` → `Open` → Selecione a pasta `pdvpostocombustivel`
+
+2. **Aguarde** o IntelliJ baixar as dependências Maven (pode levar alguns minutos)
+
+3. **Execute o Backend:**
+   - No canto superior direito, selecione a configuração **"Backend - PDV Posto Combustivel"**
+   - Clique no botão verde ▶️ (Run)
+   - Aguarde até ver: `Started PdvpostocombustivelApplication`
+   - ✅ Backend rodando em: http://localhost:8080
+   - ✅ Swagger UI: http://localhost:8080/swagger-ui.html
+
+4. **Execute o Frontend:**
+   - Selecione a configuração **"Frontend - MainApp"**
+   - Clique no botão verde ▶️ (Run)
+   - A interface gráfica será aberta automaticamente
+
+### Opção 2: Usando Linha de Comando
+
+**Backend:**
+```bash
+cd pdv-posto-combustivel
+mvn clean install
+mvn spring-boot:run
+```
+
+**Frontend (em outro terminal):**
+```bash
+cd JavaPoo-Front-End-main
+mvn clean install
+mvn exec:java -Dexec.mainClass="br.com.PdvFrontEnd.view.MainApp"
+```
+
+### Opção 3: Usando os Scripts .bat (Windows)
+
+**Backend:**
+```bash
+_docs_e_scripts\EXECUTAR_BACKEND.bat
+```
+
+**Frontend:**
+```bash
+_docs_e_scripts\EXECUTAR_FRONTEND.bat
+```
 
 ## 📁 Estrutura do Projeto
 
 ```
 pdvpostocombustivel/
-├── pdv-posto-combustivel/    # Backend (Spring Boot + PostgreSQL)
-├── JavaPoo-Front-End-main/   # Frontend (Swing)
-└── _docs_e_scripts/          # Documentações e scripts auxiliares
+├── pdv-posto-combustivel/        # 🔧 Backend (Spring Boot)
+│   ├── src/main/java/
+│   │   └── com/br/pdvpostocombustivel/
+│   │       ├── api/              # Controllers REST
+│   │       ├── domain/           # Entidades e Repositórios
+│   │       ├── config/           # Configurações (CORS, etc)
+│   │       └── util/             # Utilitários (Validações)
+│   ├── src/main/resources/
+│   │   ├── application.properties         # Configuração principal
+│   │   └── application.properties.example # Template de configuração
+│   └── pom.xml                   # Dependências Maven
+│
+├── JavaPoo-Front-End-main/       # 🖥️ Frontend (Swing)
+│   ├── src/main/java/
+│   │   └── br/com/PdvFrontEnd/
+│   │       ├── view/             # Telas GUI
+│   │       ├── service/          # Comunicação com Backend
+│   │       ├── model/            # Modelos de dados
+│   │       └── dto/              # Data Transfer Objects
+│   └── pom.xml
+│
+└── _docs_e_scripts/              # 📚 Documentação e Scripts
+    ├── PASSO1_CRIAR_BANCO.sql
+    ├── PASSO2_CRIAR_TABELAS_E_DADOS.sql
+    ├── EXECUTAR_BACKEND.bat
+    ├── EXECUTAR_FRONTEND.bat
+    └── [outros guias e scripts]
 ```
 
-## 🚀 Como Executar no IntelliJ IDEA
+## 🌐 API Endpoints
 
-### Opção 1: Usando as Configurações de Execução (Recomendado)
+Acesse a documentação completa da API em:
+**http://localhost:8080/swagger-ui.html**
 
-1. **Abra o projeto** no IntelliJ IDEA (pasta raiz `pdvpostocombustivel`)
+### Principais Endpoints:
 
-2. **No canto superior direito**, você verá um dropdown com as configurações de execução:
-   - **Backend - PDV Posto Combustivel** (Execute este primeiro)
-   - **Frontend - MainApp** (Execute este depois)
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/pessoas` | Lista todas as pessoas |
+| POST | `/api/pessoas` | Cria nova pessoa |
+| GET | `/api/produtos` | Lista todos os produtos |
+| POST | `/api/produtos` | Cria novo produto |
+| GET | `/api/estoque` | Lista estoque |
+| POST | `/api/estoque` | Adiciona ao estoque |
+| GET | `/api/precos` | Lista preços |
+| POST | `/api/precos` | Define novo preço |
 
-3. **Execute o Backend:**
-   - Selecione "Backend - PDV Posto Combustivel" no dropdown
-   - Clique no botão verde ▶️ (Run)
-   - Aguarde a mensagem: "Started PdvpostocombustivelApplication"
-   - Você verá que está conectado no **PostgreSQL** (sem H2)
-
-4. **Execute o Frontend:**
-   - Selecione "Frontend - MainApp" no dropdown
-   - Clique no botão verde ▶️ (Run)
-   - A interface gráfica será aberta
-
-### Opção 2: Usando os Scripts .bat
-
-1. **Backend:**
-   - Vá até `_docs_e_scripts/`
-   - Execute `EXECUTAR_BACKEND.bat`
-
-2. **Frontend:**
-   - Vá até `_docs_e_scripts/`
-   - Execute `EXECUTAR_FRONTEND.bat`
-
-## 🗄️ Banco de Dados
-
-- **PostgreSQL** (porta 5432)
-- Database: `pdvpostocombustivel`
-- Usuário: `postgres`
-- Senha: `Sidney123@`
-
-### Scripts Disponíveis
-
-Todos os scripts SQL estão em `_docs_e_scripts/`:
-- `PASSO1_CRIAR_BANCO.sql` - Cria o banco de dados
-- `PASSO2_CRIAR_TABELAS_E_DADOS.sql` - Cria as tabelas e dados de exemplo
-- `LIMPAR_BANCO_DADOS.sql` - Limpa todos os dados
-- `RECRIAR_BANCO_LIMPO.sql` - Recria o banco completamente limpo
-
-## 📚 Documentação Completa
-
-Toda a documentação está organizada na pasta `_docs_e_scripts/`:
-
-- `COMO_USAR_SIMPLES.md` - Guia rápido de uso
-- `GUIA_BANCO_DE_DADOS.md` - Guia completo do banco
-- `GUIA_DE_TESTES.md` - Como testar o sistema
-- `INTEGRACAO_COMPLETA.md` - Integração frontend-backend
-- E muito mais!
-
-## 🛠️ Tecnologias
+## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- Java 17
-- Spring Boot 3.4
-- Spring Data JPA
-- PostgreSQL 18
-- Maven
-- Swagger/OpenAPI
+- **Java 17**
+- **Spring Boot 3.2.5**
+- **Spring Data JPA**
+- **PostgreSQL 18.0**
+- **Hibernate**
+- **Swagger/OpenAPI**
+- **Maven**
 
 ### Frontend
-- Java 17
-- Swing
-- HTTP Client (java.net.http)
-- Maven
+- **Java Swing**
+- **HTTP Client** para comunicação com API
 
-## 📝 Funcionalidades
+### Banco de Dados
+- **PostgreSQL 18.0**
+- **pgAdmin 4**
 
-- ✅ Gerenciamento de Pessoas (Clientes/Fornecedores)
-- ✅ Gerenciamento de Produtos
-- ✅ Controle de Estoque
-- ✅ Registro de Vendas
-- ✅ Controle de Acessos (Login)
-- ✅ Gerenciamento de Contatos
-- ✅ Custos e Preços
+## ❓ Problemas Comuns
 
-## 🌐 API REST
+### ❌ Erro: "Port 8080 already in use"
+**Solução:** Execute o script para liberar a porta:
+```bash
+_docs_e_scripts\LIBERAR_PORTA_8080.bat
+```
 
-Quando o backend estiver rodando, acesse:
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **API Docs**: http://localhost:8080/api-docs
+### ❌ Erro: "Connection refused to PostgreSQL"
+**Solução:** 
+1. Verifique se o PostgreSQL está rodando
+2. Confirme as credenciais em `application.properties`
+3. Teste a conexão com pgAdmin
+
+### ❌ Erro: "Failed to execute goal"
+**Solução:** Limpe o Maven e recompile:
+```bash
+mvn clean install -U
+```
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👤 Autor
+
+**Sidney Emanuel Oliveira**
+- GitHub: [@Sidney-Emanuel-Oliveira](https://github.com/Sidney-Emanuel-Oliveira)
 
 ## 🤝 Contribuindo
 
-Este é um projeto acadêmico desenvolvido para a disciplina de Programação Orientada a Objetos.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-## 📄 Licença
+---
 
-Este projeto está sob a licença MIT. Veja os arquivos LICENSE em cada subprojeto.
+⭐ Se este projeto foi útil, considere dar uma estrela!
