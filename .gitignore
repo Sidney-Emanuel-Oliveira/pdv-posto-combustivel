@@ -49,26 +49,23 @@ out/
 .factorypath
 .project
 .settings
-.springBeans
-.sts4-cache
 
-# NetBeans
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# Arquivos de ambiente e senhas (SEGURANÇA)
+.env
+*.env
+application-local.properties
 
-# VS Code
-.vscode/
+# Banco de dados local
+*.db
+*.sqlite
+*.h2.db
 
-# macOS
+# Logs da aplicação
+logs/
+*.log.*
+
+# Sistema operacional
 .DS_Store
-
-# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -81,17 +78,9 @@ Desktop.ini
 *.tmp
 *.orig
 
-# Database
-*.db
-*.sqlite
-
 # Spring Boot
 spring-boot-devtools.properties
 
 # Application properties with sensitive data (keep template only)
 **/application.properties
 !**/application.properties.example
-
-# Logs directory
-logs/
-*.log.*

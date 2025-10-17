@@ -31,6 +31,12 @@
             <version>2.3.0</version>
         </dependency>
 
+        <!-- AOP para Logging -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- Web + JSON -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
