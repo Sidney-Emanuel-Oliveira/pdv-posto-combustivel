@@ -50,6 +50,22 @@ out/
 .project
 .settings
 
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos temporarios
+*.tmp
+*.bak
+*.swp
+*~
+
+# Arquivos de configuracao local (se houver)
+application-local.properties
+
 # Arquivos de ambiente e senhas (SEGURANÇA)
 .env
 *.env
@@ -63,20 +79,6 @@ application-local.properties
 # Logs da aplicação
 logs/
 *.log.*
-
-# Sistema operacional
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Backup files
-*~
-*.swp
-*.swo
-*.bak
-*.tmp
-*.orig
 
 # Spring Boot
 spring-boot-devtools.properties

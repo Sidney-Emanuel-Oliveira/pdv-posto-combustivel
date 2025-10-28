@@ -6,39 +6,58 @@ import br.com.PdvFrontEnd.service.ProdutoService;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.util.List;
 
 public class ProdutoList extends JFrame {
-    // Cores para a nova interface
-    private static final Color PRIMARY_COLOR = new Color(52, 152, 219); // Azul
-    private static final Color SECONDARY_COLOR = new Color(44, 62, 80); // Azul escuro quase preto
-    private static final Color ACCENT_COLOR = new Color(230, 126, 34); // Laranja
-    private static final Color TEXT_COLOR = Color.WHITE;
-    private static final Color BACKGROUND_COLOR = new Color(236, 240, 241); // Cinza claro
-    private static final Color TABLE_HEADER_COLOR = new Color(52, 73, 94); // Azul escuro para cabeçalho da tabela
-    private static final Color TABLE_SELECTION_COLOR = new Color(142, 68, 173); // Roxo para seleção da tabela
-    private static final Color BUTTON_HOVER_COLOR = new Color(41, 128, 185); // Azul mais escuro para hover
-
+    private final ProdutoService produtoService;
     private JTable table;
-    private DefaultTableModel tableModel;
-    private ProdutoService produtoService;
+
+    // Cores para a nova interface
+    private static final Color PRIMARY_COLOR = new Color(52, 152, 219);
+    private static final Color SECONDARY_COLOR = new Color(44, 62, 80);
+    private static final Color ACCENT_COLOR = new Color(230, 126, 34);
+    private static final Color TEXT_COLOR = Color.WHITE;
+    private static final Color BACKGROUND_COLOR = new Color(236, 240, 241);
+    private static final Color TABLE_HEADER_COLOR = new Color(52, 73, 94);
+    private static final Color TABLE_SELECTION_COLOR = new Color(142, 68, 173);
+    private static final Color BUTTON_HOVER_COLOR = new Color(41, 128, 185);
 
     public ProdutoList(ProdutoService service) {
         this.produtoService = service;
+        initComponents();
+    }
 
+    private void initComponents() {
         setTitle("Gerenciamento de Produtos");
-        getContentPane().setBackground(BACKGROUND_COLOR);
-        setSize(800, 500);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new BorderLayout(10, 10));
-        ((JPanel) getContentPane()).setBorder(new EmptyBorder(15, 15, 15, 15));
+        setSize(1100, 550);
+        setLocationRelativeTo(null);
 
-        String[] columnNames = {"Nome", "Referência", "Fornecedor", "Categoria", "Marca"};
-        tableModel = new DefaultTableModel(columnNames, 0);
-        table = new JTable(tableModel);
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBackground(BACKGROUND_COLOR);
+        mainPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+
+        JLabel header = new JLabel("GERENCIAMENTO DE PRODUTOS", SwingConstants.CENTER);
+        header.setFont(new Font("Arial Black", Font.BOLD, 22));
+        header.setOpaque(true);
+        header.setBackground(PRIMARY_COLOR);
+        header.setForeground(TEXT_COLOR);
+        header.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(SECONDARY_COLOR, 3),
+                new EmptyBorder(15, 0, 15, 0)
+        ));
+        mainPanel.add(header, BorderLayout.NORTH);
+
+        JPanel tablePanel = new JPanel(new BorderLayout());
+        tablePanel.setBackground(Color.WHITE);
+        tablePanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(SECONDARY_COLOR, 2),
+                new EmptyBorder(10, 10, 10, 10)
+        ));
+
+        table = new JTable();
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         table.setRowHeight(28);
         table.setGridColor(BACKGROUND_COLOR);
@@ -47,103 +66,116 @@ public class ProdutoList extends JFrame {
         table.getTableHeader().setBackground(TABLE_HEADER_COLOR);
         table.getTableHeader().setForeground(TEXT_COLOR);
         table.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.BOLD, 14));
+
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setBorder(BorderFactory.createLineBorder(SECONDARY_COLOR, 2));
-        add(scrollPane, BorderLayout.CENTER);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        JPanel panelBotoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        panelBotoes.setBackground(SECONDARY_COLOR);
-        JButton btnAdicionar = createStyledButton("Adicionar");
-        JButton btnEditar = createStyledButton("Editar");
-        JButton btnRemover = createStyledButton("Remover");
+        mainPanel.add(tablePanel, BorderLayout.CENTER);
 
-        panelBotoes.add(btnAdicionar);
-        panelBotoes.add(btnEditar);
-        panelBotoes.add(btnRemover);
-        add(panelBotoes, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        buttonPanel.setBackground(SECONDARY_COLOR);
+
+        JButton btnAdicionar = criarBotao("Adicionar", PRIMARY_COLOR, TEXT_COLOR);
+        JButton btnEditar = criarBotao("Editar", PRIMARY_COLOR, TEXT_COLOR);
+        JButton btnRemover = criarBotao("Remover", PRIMARY_COLOR, TEXT_COLOR);
+        JButton btnAtualizar = criarBotao("Atualizar", PRIMARY_COLOR, TEXT_COLOR);
+
+        buttonPanel.add(btnAdicionar);
+        buttonPanel.add(btnEditar);
+        buttonPanel.add(btnRemover);
+        buttonPanel.add(btnAtualizar);
+
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        add(mainPanel);
 
         btnAdicionar.addActionListener(e -> {
             ProdutoForm form = new ProdutoForm(produtoService, this);
             form.setVisible(true);
         });
 
-        btnEditar.addActionListener(e -> {
-            int selectedRow = table.getSelectedRow();
-            if (selectedRow != -1) {
-                List<Produto> produtos = produtoService.getAllProdutos();
-                if (selectedRow < produtos.size()) {
-                    Produto produto = produtos.get(selectedRow);
-                    if (produto.getId() != null) {
-                        ProdutoForm form = new ProdutoForm(produtoService, this, produto);
-                        form.setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Produto não possui ID válido!");
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Selecione um produto para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }
-        });
-
-        btnRemover.addActionListener(e -> {
-            int selectedRow = table.getSelectedRow();
-            if (selectedRow != -1) {
-                // Pegar o produto da lista usando o índice da linha
-                List<Produto> produtos = produtoService.getAllProdutos();
-                if (selectedRow < produtos.size()) {
-                    Produto produto = produtos.get(selectedRow);
-                    if (produto.getId() != null) {
-                        produtoService.removeProduto(produto.getId());
-                        atualizarTabela();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Produto não possui ID válido!");
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Selecione um produto para remover.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            }
-        });
+        btnEditar.addActionListener(e -> editarProduto(e));
+        btnRemover.addActionListener(e -> removerProduto(e));
+        btnAtualizar.addActionListener(e -> atualizarTabela());
 
         atualizarTabela();
     }
 
-    private JButton createStyledButton(String text) {
-        JButton button = new JButton(text);
-        button.setBackground(PRIMARY_COLOR);
-        button.setForeground(TEXT_COLOR);
-        button.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        button.setBorder(BorderFactory.createCompoundBorder(
+    private JButton criarBotao(String texto, Color fundo, Color textoCor) {
+        JButton btn = new JButton(texto);
+        btn.setBackground(fundo);
+        btn.setForeground(textoCor);
+        btn.setFont(new Font("Arial", Font.BOLD, 13));
+        btn.setFocusPainted(false);
+        btn.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(ACCENT_COLOR, 2),
-                BorderFactory.createEmptyBorder(8, 16, 8, 16)));
-        button.setFocusPainted(false);
-        button.setUI(new BasicButtonUI() {
-            @Override
-            public void paint(Graphics g, JComponent c) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AbstractButton b = (AbstractButton) c;
-                ButtonModel model = b.getModel();
+                new EmptyBorder(8, 16, 8, 16)
+        ));
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn.setBackground(BUTTON_HOVER_COLOR);
+            }
 
-                if (model.isPressed()) {
-                    g2.setColor(BUTTON_HOVER_COLOR.darker());
-                } else if (model.isRollover()) {
-                    g2.setColor(BUTTON_HOVER_COLOR);
-                } else {
-                    g2.setColor(b.getBackground());
-                }
-                g2.fillRect(0, 0, b.getWidth(), b.getHeight());
-                g2.dispose();
-                super.paint(g, c);
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn.setBackground(fundo);
             }
         });
-        return button;
+        return btn;
+    }
+
+    private void editarProduto(ActionEvent e) {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            List<Produto> produtos = produtoService.getAllProdutos();
+            if (selectedRow < produtos.size()) {
+                Produto produto = produtos.get(selectedRow);
+                if (produto.getId() != null) {
+                    ProdutoForm form = new ProdutoForm(produtoService, this, produto);
+                    form.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Produto não possui ID válido!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um produto para editar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void removerProduto(ActionEvent e) {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            List<Produto> produtos = produtoService.getAllProdutos();
+            if (selectedRow < produtos.size()) {
+                Produto produto = produtos.get(selectedRow);
+                if (produto.getId() != null) {
+                    produtoService.removeProduto(produto.getId());
+                    atualizarTabela();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Produto não possui ID válido!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um produto para remover.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public void atualizarTabela() {
-        tableModel.setRowCount(0);
+        String[] colunas = {"Nome", "Referência", "Fornecedor", "Categoria", "Marca"};
+        DefaultTableModel model = new DefaultTableModel(colunas, 0);
+
         List<Produto> produtos = produtoService.getAllProdutos();
         for (Produto produto : produtos) {
-            tableModel.addRow(new Object[]{produto.getNome(), produto.getReferencia(), produto.getFornecedor(), produto.getCategoria(), produto.getMarca()});
+            model.addRow(new Object[]{
+                    produto.getNome(),
+                    produto.getReferencia(),
+                    produto.getFornecedor(),
+                    produto.getCategoria(),
+                    produto.getMarca()
+            });
         }
+
+        table.setModel(model);
     }
 }

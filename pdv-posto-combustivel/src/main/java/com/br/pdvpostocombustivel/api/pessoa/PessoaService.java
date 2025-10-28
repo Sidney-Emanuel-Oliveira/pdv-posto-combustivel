@@ -60,9 +60,9 @@ public class PessoaService {
 
         p.setNomeCompleto(req.getNomeCompleto());
         p.setCpfCnpj(req.getCpfCnpj());
-        p.setNumeroCtps(req.getNumeroCtps());
         p.setDataNascimento(req.getDataNascimento());
         p.setTipoPessoa(req.getTipoPessoa());
+        p.setRole(req.getRole());
 
         return toResponse(repository.save(p));
     }
@@ -79,9 +79,9 @@ public class PessoaService {
             }
             p.setCpfCnpj(req.getCpfCnpj());
         }
-        if (req.getNumeroCtps() != null) p.setNumeroCtps(req.getNumeroCtps());
         if (req.getDataNascimento() != null) p.setDataNascimento(req.getDataNascimento());
         if (req.getTipoPessoa() != null) p.setTipoPessoa(req.getTipoPessoa());
+        if (req.getRole() != null) p.setRole(req.getRole());
 
         return toResponse(repository.save(p));
     }
@@ -104,13 +104,14 @@ public class PessoaService {
     }
 
     private Pessoa toEntity(PessoaRequest req) {
-        return new Pessoa(
+        Pessoa pessoa = new Pessoa(
                 req.getNomeCompleto(),
                 req.getCpfCnpj(),
-                req.getNumeroCtps(),
                 req.getDataNascimento(),
                 req.getTipoPessoa()
         );
+        pessoa.setRole(req.getRole());
+        return pessoa;
     }
 
     private PessoaResponse toResponse(Pessoa p) {
@@ -118,9 +119,9 @@ public class PessoaService {
         response.setId(p.getId());
         response.setNomeCompleto(p.getNomeCompleto());
         response.setCpfCnpj(p.getCpfCnpj());
-        response.setNumeroCtps(p.getNumeroCtps());
         response.setDataNascimento(p.getDataNascimento());
         response.setTipoPessoa(p.getTipoPessoa());
+        response.setRole(p.getRole());
         return response;
     }
 }

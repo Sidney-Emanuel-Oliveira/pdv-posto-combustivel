@@ -11,21 +11,20 @@ public class PessoaRequest {
     @JsonProperty("cpfCnpj")
     private String cpfCnpj;
 
-    @JsonProperty("numeroCtps")
-    private Long numeroCtps;
-
     @JsonProperty("dataNascimento")
     private LocalDate dataNascimento;
 
     @JsonProperty("tipoPessoa")
     private String tipoPessoa;
 
+    @JsonProperty("role")
+    private String role;
+
     public PessoaRequest() {}
 
-    public PessoaRequest(String nomeCompleto, String cpfCnpj, Long numeroCtps, LocalDate dataNascimento, String tipoPessoa) {
+    public PessoaRequest(String nomeCompleto, String cpfCnpj, LocalDate dataNascimento, String tipoPessoa) {
         this.nomeCompleto = nomeCompleto;
         this.cpfCnpj = cpfCnpj;
-        this.numeroCtps = numeroCtps;
         this.dataNascimento = dataNascimento;
         this.tipoPessoa = tipoPessoa;
     }
@@ -47,14 +46,6 @@ public class PessoaRequest {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public Long getNumeroCtps() {
-        return numeroCtps;
-    }
-
-    public void setNumeroCtps(Long numeroCtps) {
-        this.numeroCtps = numeroCtps;
-    }
-
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
@@ -69,5 +60,13 @@ public class PessoaRequest {
 
     public void setTipoPessoa(String tipoPessoa) {
         this.tipoPessoa = tipoPessoa;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

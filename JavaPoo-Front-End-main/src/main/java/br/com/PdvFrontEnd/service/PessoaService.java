@@ -50,7 +50,8 @@ public class PessoaService {
                 // Agora o tipoPessoa vem do back-end!
                 pessoa.setTipo(pessoaResponse.getTipoPessoa() != null ?
                     pessoaResponse.getTipoPessoa() : "");
-                pessoa.setRole("USER"); // Default role
+                pessoa.setRole(pessoaResponse.getRole() != null ?
+                    pessoaResponse.getRole() : "USUÁRIO"); // Pegar role do backend
                 pessoas.add(pessoa);
             }
             return pessoas;
@@ -116,13 +117,15 @@ public class PessoaService {
             PessoaRequest request = new PessoaRequest();
             request.setNomeCompleto(pessoa.getNome());
             request.setCpfCnpj(pessoa.getCpf());
-            request.setNumeroCtps(null);
 
             if (pessoa.getDataNascimento() != null && !pessoa.getDataNascimento().isEmpty()) {
                 request.setDataNascimento(LocalDate.parse(pessoa.getDataNascimento(), DATE_FORMATTER));
             }
 
             request.setTipoPessoa(pessoa.getTipo().toUpperCase());
+
+            // Adicionar role ao request
+            request.setRole(pessoa.getRole());
 
             HttpClient.put("/v1/pessoas/" + id, request, PessoaResponse.class);
             JOptionPane.showMessageDialog(null,

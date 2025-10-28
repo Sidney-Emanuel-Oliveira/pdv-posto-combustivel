@@ -126,7 +126,7 @@ public class PessoaList extends JFrame {
         JTextField dataField = new JTextField();
         String[] tipos = {"FISICA", "JURIDICA"};
         JComboBox<String> tipoBox = new JComboBox<>(tipos);
-        String[] roles = {"USER", "ADMIN"};
+        String[] roles = {"FRENTISTA", "USUÁRIO", "ADMIN"};
         JComboBox<String> roleBox = new JComboBox<>(roles);
 
         JPanel form = new JPanel(new GridLayout(5, 2, 10, 10));
@@ -172,7 +172,7 @@ public class PessoaList extends JFrame {
                 String[] tipos = {"FISICA", "JURIDICA"};
                 JComboBox<String> tipoBox = new JComboBox<>(tipos);
                 tipoBox.setSelectedItem(pessoa.getTipo());
-                String[] roles = {"USER", "ADMIN"};
+                String[] roles = {"FRENTISTA", "USUÁRIO", "ADMIN"};
                 JComboBox<String> roleBox = new JComboBox<>(roles);
                 roleBox.setSelectedItem(pessoa.getRole());
 
