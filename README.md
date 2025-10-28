@@ -59,6 +59,32 @@ mvn -version     # Deve mostrar Maven 3.8+
 psql --version   # Deve mostrar PostgreSQL 16+
 ```
 
+### 3. Configure o Projeto no IntelliJ IDEA
+
+**⚠️ IMPORTANTE - Leia antes de abrir o projeto:**
+
+1. **Abra o IntelliJ IDEA**
+2. Clique em `File` → `Open`
+3. **Selecione a pasta RAIZ** `pdvpostocombustivel` (onde está o pom.xml pai)
+4. Clique em **"Open as Project"**
+5. O IntelliJ vai detectar automaticamente:
+   - ✅ O projeto Maven multi-módulo
+   - ✅ Os dois módulos: `pdv-posto-combustivel` (Backend) e `JavaPoo-Front-End-main` (Frontend)
+   - ✅ Todas as dependências serão baixadas automaticamente
+
+**Se o IntelliJ não reconhecer automaticamente:**
+1. Clique com botão direito no `pom.xml` da raiz → `Add as Maven Project`
+2. Aguarde o download das dependências (canto inferior direito)
+3. Vá em `File` → `Project Structure` → `Modules`
+4. Verifique se ambos os módulos aparecem corretamente
+
+**Estrutura de Módulos esperada:**
+```
+📁 pdv-posto-combustivel-parent (raiz)
+  ├── 📦 pdv-posto-combustivel (Backend)
+  └── 📦 JavaPoo-Front-End-main (Frontend)
+```
+
 ## 🗄️ Configuração do Banco de Dados
 
 ### Passo 1: Criar o Banco de Dados
