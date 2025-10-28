@@ -86,3 +86,8 @@ spring-boot-devtools.properties
 # Application properties with sensitive data (keep template only)
 **/application.properties
 !**/application.properties.example
+
+# Scripts auxiliares .bat (Windows)
+*.bat
+*.cmd
+*.ps1
