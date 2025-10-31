@@ -117,10 +117,12 @@ public class LoginView extends JFrame {
         if (sessionManager.checkCredentials(username, password)) {
             sessionManager.login(username, "1");
 
-            // Registra o acesso no banco de dados
+            // Registra o acesso no banco de dados apenas se o usuário ainda não existir
             try {
-                Acesso acesso = new Acesso(username, password);
-                acessoService.addAcesso(acesso);
+                if (!acessoService.usuarioJaExiste(username)) {
+                    Acesso acesso = new Acesso(username, password);
+                    acessoService.addAcesso(acesso);
+                }
             } catch (Exception e) {
                 // Se houver erro ao salvar o acesso, apenas loga, mas não impede o login
                 System.err.println("Erro ao registrar acesso no banco: " + e.getMessage());

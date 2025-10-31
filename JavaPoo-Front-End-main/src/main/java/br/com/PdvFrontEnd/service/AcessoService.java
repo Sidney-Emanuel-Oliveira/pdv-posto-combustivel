@@ -22,16 +22,9 @@ public class AcessoService {
             );
 
             HttpClient.post("/acessos", request, AcessoResponse.class);
-            JOptionPane.showMessageDialog(null,
-                "Acesso adicionado com sucesso!",
-                "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE);
+            // Mensagem removida para não aparecer no login automático
         } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null,
-                "Erro ao adicionar acesso: " + e.getMessage(),
-                "Erro",
-                JOptionPane.ERROR_MESSAGE);
+            throw new RuntimeException("Erro ao adicionar acesso: " + e.getMessage(), e);
         }
     }
 
@@ -92,6 +85,20 @@ public class AcessoService {
                 "Erro ao atualizar acesso: " + e.getMessage(),
                 "Erro",
                 JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Verifica se já existe um acesso com o usuário especificado
+     */
+    public boolean usuarioJaExiste(String usuario) {
+        try {
+            List<Acesso> acessos = getAllAcessos();
+            return acessos.stream()
+                .anyMatch(acesso -> acesso.getUsuario().equals(usuario));
+        } catch (Exception e) {
+            System.err.println("Erro ao verificar usuário: " + e.getMessage());
+            return false;
         }
     }
 }
