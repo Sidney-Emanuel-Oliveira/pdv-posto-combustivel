@@ -1,76 +1,0 @@
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy para Windows                              
--------------------------------------------------------------------------------
-
-  Iniciado: quinta-feira, 30 de outubro de 2025 17:44:37
-   Origem : C:\Users\sidney\Documents\faculdades 2025\pdvpostocombustivel\_docs_e_scripts\
-     Destino : C:\Users\sidney\Documents\faculdades 2025\pdv-posto-combustivel-main\_docs_e_scripts\
-
-    Arquivos: *.*
-	    
-  Op‡äes: *.* /S /E /DCOPY:DA /COPY:DAT /IS /IT /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	                  46	C:\Users\sidney\Documents\faculdades 2025\pdvpostocombustivel\_docs_e_scripts\
-	  Mais Recente		     324	ADD_COLUMN_ROLE.sql100%  
-	   Mais Antigo		    4686	API_DOCUMENTATION.md100%  
-	   Mais Antigo		    6227	CHECKLIST_QUALIDADE.md100%  
-	  Novo Arquivo		     609	COMMIT_REMOVER_NUMERO_CTPS.bat100%  
-	   Mais Antigo		    4386	COMO_EXECUTAR_PELO_MAIN.md100%  
-	   Mais Antigo		    1321	COMO_LIMPAR_BANCO.md100%  
-	   Mais Antigo		    2381	COMO_RECRIAR_BANCO.md100%  
-	   Mais Antigo		    1987	COMO_USAR_SIMPLES.md100%  
-	   Mais Antigo		     791	CONSULTAR_DADOS.sql100%  
-	   Mais Antigo		     359	consultar_dados_simples.sql100%  
-	  Mais Recente		    2743	CORRECAO_CAMPO_ROLE.md100%  
-	   Mais Antigo		    4566	CORRECOES_APLICADAS.md100%  
-	   Mais Antigo		    3977	CORRECOES_FINAIS.md100%  
-	  Novo Arquivo		     328	EXECUTAR_BACKEND.bat100%  
-	  Novo Arquivo		     177	EXECUTAR_FRONTEND.bat100%  
-	   Mais Antigo		    3444	GUIA_BANCO_DE_DADOS.md100%  
-	  Mais Recente		    8525	GUIA_CONFIGURACAO_COMPLETO.md100%  
-	   Mais Antigo		    5087	GUIA_DE_TESTES.md100%  
-	   Mais Antigo		    3534	GUIA_GITHUB.md100%  
-	  Mais Recente		    3513	GUIA_LIMPEZA_REPOSITORIO.md100%  
-	   Mais Antigo		    6044	GUIA_MELHORIAS.md100%  
-	   Mais Antigo		    2441	INSTRUCOES_PGADMIN.md100%  
-	   Mais Antigo		    6626	INTEGRACAO_COMPLETA.md100%  
-	   Mais Antigo		    5535	INTEGRACAO_README.md100%  
-	  Novo Arquivo		     673	LIBERAR_PORTA_8080.bat100%  
-	   Mais Antigo		    1800	LIMPAR_BANCO_DADOS.sql100%  
-	  Novo Arquivo		    1335	LIMPAR_E_COMMIT.bat100%  
-	  Novo Arquivo		    2072	LIMPAR_TUDO_E_PUSH.bat100%  
-	   Mais Antigo		    5765	MELHORIAS_APLICADAS.md100%  
-	   Mais Antigo		    7121	PARABENS_BUILD_SUCCESS.md100%  
-	   Mais Antigo		       0	PASSO1_CRIAR_BANCO.sql
-	   Mais Antigo		    4674	PASSO2_CRIAR_TABELAS_E_DADOS.sql100%  
-	  Novo Arquivo		     411	RECOMPILAR_BACKEND_ROLE.bat100%  
-	   Mais Antigo		    5188	RECRIAR_BANCO_LIMPO.sql100%  
-	  Novo Arquivo		     955	REMOVER_BAT_DO_GITHUB.bat100%  
-	  Mais Recente		     189	REMOVER_COLUNA_NUMERO_CTPS.sql100%  
-	   Mais Antigo		    2320	RESOLVER_ERRO_404.txt100%  
-	   Mais Antigo		    6730	RESOLVER_ERRO_SPRING_BOOT_CONFIG.md100%  
-	  Novo Arquivo		    6598	RESUMO_IMPLEMENTACAO_COMPLETA.md100%  
-	   Mais Antigo		    2888	SETUP_RAPIDO.md100%  
-	  Novo Arquivo		    2187	SISTEMA_LOGIN_IMPLEMENTADO.md100%  
-	   Mais Antigo		    1858	verificar_dados.sql100%  
-	   Mais Antigo		    2222	verificar_dados_completo.sql100%  
-	   Mais Antigo		    1125	VERIFICAR_DADOS_COMPLETOS.sql100%  
-	   Mais Antigo		     708	verificar_estrutura_tabelas.sql100%  
-	   Mais Antigo		    1800	VERIFICAR_TABELAS_EXISTENTES.sql100%  
-
-------------------------------------------------------------------------------
-
-               Total   Copiada  IgnoradaIncompatibilidade     FALHA    Extras
-Diret¢rios:         1         0         1         0         0         0
- Arquivos:        46        46         0         0         0         0
-    Bytes:   134.9 k   134.9 k         0         0         0         0
-N.§ de Vezes:   0:00:00   0:00:00                       0:00:00   0:00:00
-
-
-Velocidade:           3.735.945 Bytes/s.
-Velocidade:             213,773 MegaBytes/min.
-   Finalizado em: quinta-feira, 30 de outubro de 2025 17:44:37
-

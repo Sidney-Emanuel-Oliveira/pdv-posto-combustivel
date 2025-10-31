@@ -11,7 +11,6 @@ public class Acesso {
     private Long id;
 
     @NotBlank
-    @Column(unique = true)
     private String usuario;
 
     @NotBlank
