@@ -18,15 +18,8 @@ public class MainApp {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            // Inicia o sistema pelo login
-            SessionManager sessionManager = SessionManager.getInstance();
-
-            // Se não existir usuário cadastrado, abre a tela de cadastro
-            if (!sessionManager.userExists()) {
-                new RegisterView().setVisible(true);
-            } else {
-                new LoginView().setVisible(true);
-            }
+            // Inicia o sistema sempre pela tela de login
+            new LoginView().setVisible(true);
         });
     }
 

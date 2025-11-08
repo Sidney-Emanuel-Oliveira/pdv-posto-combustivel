@@ -175,18 +175,6 @@ public class LoginView extends JFrame {
         cardPanel.add(btnPreencherInfo);
         cardPanel.add(Box.createRigidArea(new Dimension(0, 12)));
 
-        // Botão Cadastrar (só se não existir frentista)
-        if (!sessionManager.userExists()) {
-            JButton btnRegister = createModernButton("Cadastrar Frentista", ACCENT_COLOR, ACCENT_COLOR.darker());
-            btnRegister.setAlignmentX(Component.CENTER_ALIGNMENT);
-            btnRegister.setMaximumSize(new Dimension(340, 45));
-            btnRegister.addActionListener(e -> {
-                new RegisterView().setVisible(true);
-                dispose();
-            });
-            cardPanel.add(btnRegister);
-            cardPanel.add(Box.createRigidArea(new Dimension(0, 12)));
-        }
 
         // Botão Cadastrar Admin (só se não existir admin)
         if (!sessionManager.adminExists()) {
@@ -255,7 +243,7 @@ public class LoginView extends JFrame {
 
             JOptionPane.showMessageDialog(this,
                     "Login realizado com sucesso!\n" +
-                    "Bem-vindo(a), " + (acesso.getNomeCompleto() != null ? acesso.getNomeCompleto() : username) + "!",
+                            "Bem-vindo(a), " + (acesso.getNomeCompleto() != null ? acesso.getNomeCompleto() : username) + "!",
                     "Sucesso",
                     JOptionPane.INFORMATION_MESSAGE);
 
