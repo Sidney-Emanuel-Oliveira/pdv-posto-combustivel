@@ -3,6 +3,7 @@ package com.br.pdvpostocombustivel.api.pessoa;
 
 import com.br.pdvpostocombustivel.api.pessoa.dto.PessoaRequest;
 import com.br.pdvpostocombustivel.api.pessoa.dto.PessoaResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/pessoas")
+@Tag(name = "Pessoas", description = "Operações relacionadas a pessoas")
 public class PessoaController {
 
     private final PessoaService service;

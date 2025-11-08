@@ -2,6 +2,7 @@ package com.br.pdvpostocombustivel.api.contato;
 
 import com.br.pdvpostocombustivel.api.contato.dto.ContatoRequest;
 import com.br.pdvpostocombustivel.api.contato.dto.ContatoResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/contatos")
+@Tag(name = "Contatos", description = "Operações relacionadas a contatos")
 public class ContatoController {
 
     @Autowired
