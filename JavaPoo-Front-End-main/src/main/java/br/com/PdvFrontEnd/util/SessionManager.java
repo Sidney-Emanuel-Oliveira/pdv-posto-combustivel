@@ -72,7 +72,12 @@ public class SessionManager {
     }
 
     // Salvar credenciais do Admin
-    public void saveAdminCredentials(String username, String password) {
+    public void saveAdminCredentials(String username, String password) throws Exception {
+        // Salvar no banco de dados via API
+        br.com.PdvFrontEnd.service.AcessoService acessoService = new br.com.PdvFrontEnd.service.AcessoService();
+        acessoService.addAcessoComPessoa(username, password, null, "ADMIN");
+
+        // Também salvar localmente para verificação
         Properties props = new Properties();
         try (FileOutputStream out = new FileOutputStream(ADMIN_CONFIG_FILE)) {
             props.setProperty("admin_username", username);
@@ -81,6 +86,7 @@ public class SessionManager {
             props.store(out, "Admin Credentials");
         } catch (IOException e) {
             e.printStackTrace();
+            throw new Exception("Erro ao salvar credenciais localmente: " + e.getMessage());
         }
     }
 

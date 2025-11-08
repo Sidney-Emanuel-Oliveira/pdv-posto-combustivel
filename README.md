@@ -34,6 +34,11 @@ O **PDV Posto de Combustível** é um sistema completo de gerenciamento para pos
 
 O sistema oferece uma interface gráfica moderna desenvolvida em **Java Swing** que se comunica com uma **API REST** desenvolvida em **Spring Boot**, com persistência de dados em **PostgreSQL**.
 
+> **⚠️ IMPORTANTE - PRIMEIRO ACESSO:**  
+> O sistema permite apenas **1 ADMINISTRADOR**. No primeiro acesso, você deve cadastrar o admin.  
+> Se o login não funcionar, pode ser que já exista um admin no banco.  
+> **Leia:** [_docs_e_scripts/IMPORTANTE_PRIMEIRO_ACESSO.md](_docs_e_scripts/IMPORTANTE_PRIMEIRO_ACESSO.md)
+
 ### ✨ Destaques
 
 - ✅ **Sistema de Login e Cadastro** com autenticação

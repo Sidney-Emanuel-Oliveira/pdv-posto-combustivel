@@ -161,17 +161,30 @@ public class RegisterAdminView extends JFrame {
             return;
         }
 
-        // Salva as credenciais do Admin
-        sessionManager.saveAdminCredentials(username, password);
+        try {
+            // Salva as credenciais do Admin
+            sessionManager.saveAdminCredentials(username, password);
 
-        JOptionPane.showMessageDialog(this,
-                "Administrador cadastrado com sucesso!",
-                "Sucesso",
-                JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "Administrador cadastrado com sucesso!\n\n" +
+                    "Agora você pode fazer login no sistema.",
+                    "Sucesso",
+                    JOptionPane.INFORMATION_MESSAGE);
 
-        // Volta para a tela de login
-        new LoginView().setVisible(true);
-        dispose();
+            // Volta para a tela de login
+            new LoginView().setVisible(true);
+            dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "ERRO: " + e.getMessage() + "\n\n" +
+                    "Possíveis causas:\n" +
+                    "1. Já existe um administrador cadastrado\n" +
+                    "2. Banco de dados já possui dados antigos\n\n" +
+                    "Solução: Limpe o banco ou use as credenciais antigas",
+                    "Erro ao Cadastrar Admin",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     private JButton createStyledButton(String text) {

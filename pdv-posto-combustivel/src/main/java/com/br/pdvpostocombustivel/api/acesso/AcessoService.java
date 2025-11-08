@@ -25,6 +25,17 @@ public class AcessoService {
 
     @Transactional
     public AcessoResponse criar(AcessoRequest request) {
+        // Verifica se já existe um admin (regra de negócio: só pode ter 1 admin)
+        if ("ADMIN".equalsIgnoreCase(request.getRole())) {
+            long adminCount = acessoRepository.findAll().stream()
+                    .filter(a -> "ADMIN".equalsIgnoreCase(a.getRole()))
+                    .count();
+
+            if (adminCount > 0) {
+                throw new IllegalStateException("Já existe um administrador cadastrado no sistema!");
+            }
+        }
+
         Acesso acesso = new Acesso();
         acesso.setUsuario(request.getUsuario());
         acesso.setSenha(request.getSenha());

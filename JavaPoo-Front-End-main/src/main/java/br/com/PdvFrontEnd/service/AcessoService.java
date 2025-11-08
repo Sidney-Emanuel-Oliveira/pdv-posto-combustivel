@@ -112,6 +112,20 @@ public class AcessoService {
     }
 
     /**
+     * Verifica se já existe um administrador cadastrado
+     */
+    public boolean existeAdmin() {
+        try {
+            List<Acesso> acessos = getAllAcessos();
+            return acessos.stream()
+                .anyMatch(acesso -> "ADMIN".equalsIgnoreCase(acesso.getRole()));
+        } catch (Exception e) {
+            System.err.println("Erro ao verificar admin: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
      * Faz login no sistema
      */
     public Acesso login(String usuario, String senha) {
