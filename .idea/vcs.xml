@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaPoo-Front-End-main" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/pdv-posto-combustivel" vcs="Git" />
   </component>
 </project>

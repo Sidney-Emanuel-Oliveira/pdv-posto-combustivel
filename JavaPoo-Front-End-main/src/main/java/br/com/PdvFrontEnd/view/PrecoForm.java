@@ -49,7 +49,6 @@ public class PrecoForm extends JFrame {
 
         mainPanel.add(new JLabel("Valor:"));
 
-
         txtValor = new JTextField();
         txtValor.setBackground(Color.WHITE);
         txtValor.setForeground(SECONDARY_COLOR);
@@ -137,19 +136,26 @@ public class PrecoForm extends JFrame {
     private void salvarPreco() {
         try {
             BigDecimal valor = new BigDecimal(txtValor.getText());
+
+            // Parse data e hora separadamente
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-            Date dataAlteracao = dateFormat.parse(txtDataAlteracao.getText());
-            Date horaAlteracao = timeFormat.parse(txtHoraAlteracao.getText());
+            Date data = dateFormat.parse(txtDataAlteracao.getText());
+            Date hora = timeFormat.parse(txtHoraAlteracao.getText());
+
+            // Combinar data e hora em um único Date
+            SimpleDateFormat combinedFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            String dataHoraCombinada = txtDataAlteracao.getText() + " " + txtHoraAlteracao.getText();
+            Date dataHoraCompleta = combinedFormat.parse(dataHoraCombinada);
 
             if (precoEmEdicao != null) {
                 // Modo edição
-                Preco precoAtualizado = new Preco(valor, dataAlteracao, horaAlteracao);
+                Preco precoAtualizado = new Preco(valor, dataHoraCompleta, hora);
                 precoService.updatePreco(precoEmEdicao.getId(), precoAtualizado);
             } else {
                 // Modo criação
-                Preco preco = new Preco(valor, dataAlteracao, horaAlteracao);
+                Preco preco = new Preco(valor, dataHoraCompleta, hora);
                 precoService.addPreco(preco);
             }
             precoList.atualizarTabela();

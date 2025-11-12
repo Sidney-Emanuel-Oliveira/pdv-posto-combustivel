@@ -33,6 +33,16 @@ public class Produto {
     }
 
     public Produto(String nome, String referencia, String fornecedor, String categoria, String marca) {
+        this.nome = nome;
+        this.referencia = referencia;
+        this.fornecedor = fornecedor;
+        this.categoria = categoria;
+        this.marca = marca;
+        // Define se é combustível com base na categoria ou nome
+        if (categoria != null) {
+            String catLower = categoria.toLowerCase();
+            this.isCombustivel = catLower.contains("combustivel") || catLower.contains("gasolina") || catLower.contains("etanol") || catLower.contains("diesel");
+        }
     }
 
     // Getters e Setters

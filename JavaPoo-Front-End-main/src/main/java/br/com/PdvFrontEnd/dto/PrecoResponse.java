@@ -1,9 +1,7 @@
 package br.com.PdvFrontEnd.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class PrecoResponse {
     @JsonProperty("id")
@@ -13,12 +11,10 @@ public class PrecoResponse {
     private BigDecimal valor;
 
     @JsonProperty("dataAlteracao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date dataAlteracao;
+    private String dataAlteracao;
 
     @JsonProperty("horaAlteracao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
-    private Date horaAlteracao;
+    private String horaAlteracao;
 
     public PrecoResponse() {}
 
@@ -38,19 +34,19 @@ public class PrecoResponse {
         this.valor = valor;
     }
 
-    public Date getDataAlteracao() {
+    public String getDataAlteracao() {
         return dataAlteracao;
     }
 
-    public void setDataAlteracao(Date dataAlteracao) {
+    public void setDataAlteracao(String dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
     }
 
-    public Date getHoraAlteracao() {
+    public String getHoraAlteracao() {
         return horaAlteracao;
     }
 
-    public void setHoraAlteracao(Date horaAlteracao) {
+    public void setHoraAlteracao(String horaAlteracao) {
         this.horaAlteracao = horaAlteracao;
     }
 }

@@ -43,10 +43,10 @@ public class PrecoService {
             for (PrecoResponse response : responses) {
                 Preco preco = new Preco(
                     response.getValor(),
-                    response.getDataAlteracao(),
-                    response.getHoraAlteracao()
+                    parseDateString(response.getDataAlteracao()),
+                    parseDateString(response.getHoraAlteracao())
                 );
-                preco.setId(response.getId()); // ← ADICIONAR ID
+                preco.setId(response.getId());
                 precos.add(preco);
             }
             return precos;
@@ -57,6 +57,39 @@ public class PrecoService {
                 "Erro",
                 JOptionPane.ERROR_MESSAGE);
             return new ArrayList<>();
+        }
+    }
+
+    private java.util.Date parseDateString(String dateStr) {
+        if (dateStr == null || dateStr.isEmpty()) {
+            return null;
+        }
+
+        try {
+            // Tenta vários formatos
+            java.text.SimpleDateFormat[] formats = {
+                new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
+                new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
+                new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss"),
+                new java.text.SimpleDateFormat("yyyy-MM-dd"),
+                new java.text.SimpleDateFormat("HH:mm:ss")
+            };
+
+            for (java.text.SimpleDateFormat format : formats) {
+                try {
+                    format.setLenient(false);
+                    return format.parse(dateStr);
+                } catch (java.text.ParseException e) {
+                    // Tenta próximo formato
+                }
+            }
+
+            // Se nenhum formato funcionou, retorna null
+            System.err.println("Não foi possível fazer parse da data: " + dateStr);
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

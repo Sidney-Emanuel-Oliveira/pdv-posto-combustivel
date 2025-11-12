@@ -1,5 +1,7 @@
 package com.br.pdvpostocombustivel.api.estoque.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.OptBoolean;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -22,6 +24,7 @@ public class EstoqueResponse {
     private String loteFabricacao;
 
     @Schema(description = "Data de validade", example = "2025-12-31")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", lenient = OptBoolean.TRUE)
     private Date dataValidade;
 
     // Getters e Setters

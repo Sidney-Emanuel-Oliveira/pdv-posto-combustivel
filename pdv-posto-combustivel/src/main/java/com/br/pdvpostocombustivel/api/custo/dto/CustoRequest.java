@@ -1,5 +1,7 @@
 package com.br.pdvpostocombustivel.api.custo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.OptBoolean;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -33,6 +35,7 @@ public class CustoRequest {
     private Double margemLucro;
 
     @Schema(description = "Data de processamento", example = "2025-10-15T10:30:00")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", lenient = OptBoolean.TRUE)
     private Date dataProcessamento;
 
     // Getters e Setters

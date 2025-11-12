@@ -10,11 +10,11 @@ public class PrecoRequest {
     private BigDecimal valor;
 
     @JsonProperty("dataAlteracao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date dataAlteracao;
 
     @JsonProperty("horaAlteracao")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", timezone = "UTC")
     private Date horaAlteracao;
 
     public PrecoRequest() {}
